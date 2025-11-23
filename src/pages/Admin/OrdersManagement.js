@@ -21,7 +21,8 @@ const OrdersManagement = () => {
   useEffect(() => {
     fetchOrders();
     fetchStats();
-  }, [currentPage, searchTerm, statusFilter]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [searchTerm, statusFilter]);
 
   const fetchOrders = async () => {
     try {
@@ -308,8 +309,8 @@ const OrdersManagement = () => {
                     key={status}
                     onClick={() => handleStatusUpdate(selectedOrder._id, status)}
                     className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-200 ${selectedOrder.status === status
-                        ? 'bg-ink-600 text-white'
-                        : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
+                      ? 'bg-ink-600 text-white'
+                      : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
                       }`}
                   >
                     {status.charAt(0).toUpperCase() + status.slice(1)}
