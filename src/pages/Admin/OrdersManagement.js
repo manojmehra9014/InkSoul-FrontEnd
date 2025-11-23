@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import { formatPrice } from '../../utils/currency';
 
 const OrdersManagement = () => {
@@ -9,8 +8,6 @@ const OrdersManagement = () => {
   const [showOrderModal, setShowOrderModal] = useState(false);
   const [searchTerm, setSearchTerm] = useState('');
   const [statusFilter, setStatusFilter] = useState('');
-  const [currentPage, setCurrentPage] = useState(1);
-  const [totalPages, setTotalPages] = useState(1);
   const [stats, setStats] = useState({
     totalOrders: 0,
     pendingOrders: 0,
@@ -163,8 +160,8 @@ const OrdersManagement = () => {
   const handleStatusUpdate = async (orderId, newStatus) => {
     try {
       // Mock API call
-      setOrders(orders.map(order => 
-        order._id === orderId 
+      setOrders(orders.map(order =>
+        order._id === orderId
           ? { ...order, status: newStatus, updatedAt: new Date().toISOString() }
           : order
       ));
@@ -235,12 +232,12 @@ const OrdersManagement = () => {
                 <div className="space-y-2">
                   <p><span className="font-medium">Order Number:</span> {selectedOrder.orderNumber}</p>
                   <p><span className="font-medium">Date:</span> {new Date(selectedOrder.createdAt).toLocaleDateString()}</p>
-                  <p><span className="font-medium">Status:</span> 
+                  <p><span className="font-medium">Status:</span>
                     <span className={`ml-2 px-2 py-1 rounded-full text-xs font-medium ${getStatusColor(selectedOrder.status)}`}>
                       {selectedOrder.status.charAt(0).toUpperCase() + selectedOrder.status.slice(1)}
                     </span>
                   </p>
-                  <p><span className="font-medium">Payment Status:</span> 
+                  <p><span className="font-medium">Payment Status:</span>
                     <span className={`ml-2 px-2 py-1 rounded-full text-xs font-medium ${getPaymentStatusColor(selectedOrder.paymentStatus)}`}>
                       {selectedOrder.paymentStatus.charAt(0).toUpperCase() + selectedOrder.paymentStatus.slice(1)}
                     </span>
@@ -310,11 +307,10 @@ const OrdersManagement = () => {
                   <button
                     key={status}
                     onClick={() => handleStatusUpdate(selectedOrder._id, status)}
-                    className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-200 ${
-                      selectedOrder.status === status
+                    className={`px-4 py-2 rounded-lg text-sm font-medium transition-colors duration-200 ${selectedOrder.status === status
                         ? 'bg-ink-600 text-white'
                         : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
-                    }`}
+                      }`}
                   >
                     {status.charAt(0).toUpperCase() + status.slice(1)}
                   </button>

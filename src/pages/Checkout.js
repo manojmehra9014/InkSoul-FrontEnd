@@ -8,7 +8,6 @@ const Checkout = () => {
   const { items, getCartTotal, clearCart } = useCart();
   const { user } = useAuth();
   const [loading, setLoading] = useState(false);
-  const [step, setStep] = useState(1);
   const [formData, setFormData] = useState({
     // Shipping Information
     firstName: user?.name?.split(' ')[0] || '',
@@ -20,7 +19,7 @@ const Checkout = () => {
     state: user?.address?.state || '',
     zipCode: user?.address?.zipCode || '',
     country: user?.address?.country || 'United States',
-    
+
     // Payment Information
     paymentMethod: 'stripe'
   });
@@ -46,7 +45,7 @@ const Checkout = () => {
     try {
       // Simulate order creation
       await new Promise(resolve => setTimeout(resolve, 2000));
-      
+
       // Clear cart and redirect to success page
       clearCart();
       navigate('/order-success');
@@ -88,7 +87,7 @@ const Checkout = () => {
                 <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-6">
                   Shipping Information
                 </h2>
-                
+
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div>
                     <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
@@ -103,7 +102,7 @@ const Checkout = () => {
                       className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-ink-500 dark:bg-gray-700 dark:text-white"
                     />
                   </div>
-                  
+
                   <div>
                     <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                       Last Name *
@@ -117,7 +116,7 @@ const Checkout = () => {
                       className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-ink-500 dark:bg-gray-700 dark:text-white"
                     />
                   </div>
-                  
+
                   <div>
                     <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                       Email *
@@ -131,7 +130,7 @@ const Checkout = () => {
                       className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-ink-500 dark:bg-gray-700 dark:text-white"
                     />
                   </div>
-                  
+
                   <div>
                     <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                       Phone *
@@ -145,7 +144,7 @@ const Checkout = () => {
                       className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-ink-500 dark:bg-gray-700 dark:text-white"
                     />
                   </div>
-                  
+
                   <div className="md:col-span-2">
                     <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                       Address *
@@ -159,7 +158,7 @@ const Checkout = () => {
                       className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-ink-500 dark:bg-gray-700 dark:text-white"
                     />
                   </div>
-                  
+
                   <div>
                     <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                       City *
@@ -173,7 +172,7 @@ const Checkout = () => {
                       className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-ink-500 dark:bg-gray-700 dark:text-white"
                     />
                   </div>
-                  
+
                   <div>
                     <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                       State *
@@ -187,7 +186,7 @@ const Checkout = () => {
                       className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-ink-500 dark:bg-gray-700 dark:text-white"
                     />
                   </div>
-                  
+
                   <div>
                     <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                       ZIP Code *
@@ -201,7 +200,7 @@ const Checkout = () => {
                       className="w-full px-4 py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-ink-500 dark:bg-gray-700 dark:text-white"
                     />
                   </div>
-                  
+
                   <div>
                     <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                       Country *
@@ -227,7 +226,7 @@ const Checkout = () => {
                 <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-6">
                   Payment Method
                 </h2>
-                
+
                 <div className="space-y-4">
                   <div className="flex items-center">
                     <input
@@ -243,7 +242,7 @@ const Checkout = () => {
                       Credit/Debit Card (Stripe)
                     </label>
                   </div>
-                  
+
                   <div className="flex items-center">
                     <input
                       id="paypal"
@@ -293,7 +292,7 @@ const Checkout = () => {
               <h2 className="text-xl font-semibold text-gray-900 dark:text-white mb-6">
                 Order Summary
               </h2>
-              
+
               {/* Order Items */}
               <div className="space-y-4 mb-6">
                 {items.map((item) => (
@@ -317,7 +316,7 @@ const Checkout = () => {
                   </div>
                 ))}
               </div>
-              
+
               {/* Order Totals */}
               <div className="space-y-3 border-t border-gray-200 dark:border-gray-700 pt-6">
                 <div className="flex justify-between text-gray-600 dark:text-gray-400">

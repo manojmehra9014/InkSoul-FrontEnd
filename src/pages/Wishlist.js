@@ -6,7 +6,7 @@ import { formatPrice } from '../utils/currency';
 import LoadingSpinner from '../components/UI/LoadingSpinner';
 
 const Wishlist = () => {
-  const { user, isAuthenticated } = useAuth();
+  const { isAuthenticated } = useAuth();
   const { addToCart } = useCart();
   const [wishlistItems, setWishlistItems] = useState([]);
   const [loading, setLoading] = useState(true);

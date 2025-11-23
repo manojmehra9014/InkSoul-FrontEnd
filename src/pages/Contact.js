@@ -15,8 +15,8 @@ const Contact = () => {
 
   useEffect(() => {
     // Animate form and info sections
-    gsap.fromTo([formRef.current, infoRef.current], 
-      { y: 50, opacity: 0 }, 
+    gsap.fromTo([formRef.current, infoRef.current],
+      { y: 50, opacity: 0 },
       { y: 0, opacity: 1, duration: 0.8, stagger: 0.2 }
     );
   }, []);
@@ -37,7 +37,7 @@ const Contact = () => {
       setLoading(false);
       setSubmitted(true);
       setFormData({ name: '', email: '', subject: '', message: '' });
-      
+
       // Reset submitted state after 3 seconds
       setTimeout(() => setSubmitted(false), 3000);
     }, 1500);
@@ -93,7 +93,7 @@ const Contact = () => {
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-6">
               Send us a Message
             </h2>
-            
+
             {submitted && (
               <div className="mb-6 p-4 bg-green-50 dark:bg-green-900/20 border border-green-200 dark:border-green-800 rounded-lg">
                 <div className="flex">
@@ -125,7 +125,7 @@ const Contact = () => {
                     placeholder="Your name"
                   />
                 </div>
-                
+
                 <div>
                   <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                     Email *
@@ -141,7 +141,7 @@ const Contact = () => {
                   />
                 </div>
               </div>
-              
+
               <div>
                 <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                   Subject *
@@ -156,7 +156,7 @@ const Contact = () => {
                   placeholder="What's this about?"
                 />
               </div>
-              
+
               <div>
                 <label className="block text-sm font-medium text-gray-700 dark:text-gray-300 mb-2">
                   Message *
@@ -171,7 +171,7 @@ const Contact = () => {
                   placeholder="Tell us more about your inquiry..."
                 />
               </div>
-              
+
               <button
                 type="submit"
                 disabled={loading}
@@ -196,14 +196,14 @@ const Contact = () => {
                 Contact Information
               </h2>
               <p className="text-gray-600 dark:text-gray-300 mb-8">
-                Have questions about our products, need help with an order, or just want to say hello? 
+                Have questions about our products, need help with an order, or just want to say hello?
                 We're here to help and would love to hear from you.
               </p>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               {contactInfo.map((info, index) => (
-                <div 
+                <div
                   key={index}
                   className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-6 hover:shadow-xl transition-all duration-300 transform hover:scale-105"
                 >
@@ -263,16 +263,16 @@ const Contact = () => {
                 Stay connected for the latest updates, new designs, and exclusive offers.
               </p>
               <div className="flex space-x-4">
-                <a href="#" className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center hover:bg-white/30 transition-colors duration-200">
+                <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center hover:bg-white/30 transition-colors duration-200">
                   <span className="text-lg">📘</span>
                 </a>
-                <a href="#" className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center hover:bg-white/30 transition-colors duration-200">
+                <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center hover:bg-white/30 transition-colors duration-200">
                   <span className="text-lg">📷</span>
                 </a>
-                <a href="#" className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center hover:bg-white/30 transition-colors duration-200">
+                <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center hover:bg-white/30 transition-colors duration-200">
                   <span className="text-lg">🐦</span>
                 </a>
-                <a href="#" className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center hover:bg-white/30 transition-colors duration-200">
+                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="w-10 h-10 bg-white/20 rounded-lg flex items-center justify-center hover:bg-white/30 transition-colors duration-200">
                   <span className="text-lg">💼</span>
                 </a>
               </div>

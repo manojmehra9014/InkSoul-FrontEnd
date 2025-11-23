@@ -8,7 +8,6 @@ import { formatPrice, calculateDiscount } from '../utils/currency';
 gsap.registerPlugin(ScrollTrigger);
 
 const Products = () => {
-  const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [loading, setLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState('all');
@@ -25,9 +24,8 @@ const Products = () => {
         setLoading(true);
         const response = await fetch(`${process.env.REACT_APP_API_URL || 'http://localhost:5000'}/api/products`);
         const data = await response.json();
-        
+
         if (data.success) {
-          setProducts(data.data.products);
           setFilteredProducts(data.data.products);
         }
       } catch (error) {
@@ -41,7 +39,7 @@ const Products = () => {
       try {
         const response = await fetch(`${process.env.REACT_APP_API_URL || 'http://localhost:5000'}/api/products/categories`);
         const data = await response.json();
-        
+
         if (data.success) {
           setCategories(['all', ...data.data]);
         }
@@ -76,7 +74,7 @@ const Products = () => {
           `${process.env.REACT_APP_API_URL || 'http://localhost:5000'}/api/products?${params}`
         );
         const data = await response.json();
-        
+
         if (data.success) {
           setFilteredProducts(data.data.products);
         }
@@ -148,7 +146,7 @@ const Products = () => {
         </div>
 
         {/* Filters */}
-        <div 
+        <div
           ref={filtersRef}
           className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-6 mb-8"
         >
@@ -175,11 +173,10 @@ const Products = () => {
                 <button
                   key={category}
                   onClick={() => setSelectedCategory(category)}
-                  className={`px-4 py-2 rounded-lg font-medium transition-all duration-200 ${
-                    selectedCategory === category
-                      ? 'bg-gradient-to-r from-ink-600 to-soul-600 text-white shadow-lg'
-                      : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
-                  }`}
+                  className={`px-4 py-2 rounded-lg font-medium transition-all duration-200 ${selectedCategory === category
+                    ? 'bg-gradient-to-r from-ink-600 to-soul-600 text-white shadow-lg'
+                    : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
+                    }`}
                 >
                   {category === 'all' ? 'All Products' : category}
                 </button>
@@ -215,15 +212,15 @@ const Products = () => {
             </p>
           </div>
         ) : (
-          <div 
+          <div
             ref={productsRef}
             className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8"
           >
             {filteredProducts.map((product) => {
               const discount = calculateDiscount(product.comparePrice, product.price);
-              
+
               return (
-                <div 
+                <div
                   key={product._id}
                   className="product-card bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden group"
                 >
@@ -260,7 +257,7 @@ const Products = () => {
                       </div>
                     )}
                   </div>
-                  
+
                   <div className="p-6">
                     <span className="text-sm text-ink-600 dark:text-ink-400 font-medium">
                       {product.category}
@@ -271,7 +268,7 @@ const Products = () => {
                     <p className="text-gray-600 dark:text-gray-400 text-sm mb-4 line-clamp-2">
                       {product.description}
                     </p>
-                    
+
                     <div className="flex items-center justify-between">
                       <div className="flex flex-col">
                         <span className="text-2xl font-bold text-ink-600 dark:text-ink-400">

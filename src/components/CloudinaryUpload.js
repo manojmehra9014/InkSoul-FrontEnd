@@ -12,7 +12,6 @@ const CloudinaryUpload = ({
 }) => {
   const [uploading, setUploading] = useState(false);
   const [uploadedImages, setUploadedImages] = useState(existingImages.filter(img => img.url));
-  const [imageColors, setImageColors] = useState({}); // To store color codes for images
   const fileInputRef = useRef(null);
 
   // Initialize Cloudinary instance

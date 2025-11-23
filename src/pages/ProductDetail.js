@@ -9,7 +9,7 @@ const ProductDetail = () => {
   const { id } = useParams();
   const navigate = useNavigate();
   const { addToCart } = useCart();
-  const { isAuthenticated } = useAuth();
+  const { } = useAuth();
   const [product, setProduct] = useState(null);
   const [loading, setLoading] = useState(true);
   const [selectedSize, setSelectedSize] = useState('M');
@@ -25,7 +25,7 @@ const ProductDetail = () => {
         setLoading(true);
         const response = await fetch(`${process.env.REACT_APP_API_URL || 'http://localhost:5000'}/api/products/${id}`);
         const data = await response.json();
-        
+
         if (data.success) {
           setProduct(data.data);
         } else {
@@ -46,8 +46,8 @@ const ProductDetail = () => {
   useEffect(() => {
     if (!loading && product) {
       // Animate product details
-      gsap.fromTo(productRef.current?.children || [], 
-        { y: 50, opacity: 0 }, 
+      gsap.fromTo(productRef.current?.children || [],
+        { y: 50, opacity: 0 },
         { y: 0, opacity: 1, duration: 0.8, stagger: 0.1 }
       );
     }
@@ -55,20 +55,20 @@ const ProductDetail = () => {
 
   const handleAddToCart = () => {
     if (!product) return;
-    
+
     addToCart(product, quantity, selectedSize, selectedColor);
-    
+
     // Success animation
-    gsap.fromTo('.add-to-cart-btn', 
-      { scale: 1 }, 
+    gsap.fromTo('.add-to-cart-btn',
+      { scale: 1 },
       { scale: 0.95, duration: 0.1, yoyo: true, repeat: 1 }
     );
   };
 
   const handleImageChange = (index) => {
     setActiveImageIndex(index);
-    gsap.fromTo(imageRef.current, 
-      { opacity: 0.7, scale: 0.95 }, 
+    gsap.fromTo(imageRef.current,
+      { opacity: 0.7, scale: 0.95 },
       { opacity: 1, scale: 1, duration: 0.3 }
     );
   };
@@ -95,7 +95,7 @@ const ProductDetail = () => {
     );
   }
 
-  const discountPercentage = product.comparePrice 
+  const discountPercentage = product.comparePrice
     ? Math.round(((product.comparePrice - product.price) / product.comparePrice) * 100)
     : 0;
 
@@ -113,18 +113,17 @@ const ProductDetail = () => {
                 className="w-full h-full object-cover"
               />
             </div>
-            
+
             {/* Thumbnail Images */}
             <div className="flex space-x-4">
               {product.images.map((image, index) => (
                 <div key={index} className="flex flex-col items-center">
                   <button
                     onClick={() => handleImageChange(index)}
-                    className={`w-20 h-20 rounded-lg overflow-hidden border-2 transition-all duration-200 ${
-                      activeImageIndex === index
+                    className={`w-20 h-20 rounded-lg overflow-hidden border-2 transition-all duration-200 ${activeImageIndex === index
                         ? 'border-ink-600 shadow-lg'
                         : 'border-gray-200 dark:border-gray-700 hover:border-ink-400'
-                    }`}
+                      }`}
                   >
                     <img
                       src={image.url}
@@ -158,18 +157,17 @@ const ProductDetail = () => {
               <h1 className="text-3xl font-bold text-gray-900 dark:text-white mt-2">
                 {product.name}
               </h1>
-              
+
               {/* Rating */}
               <div className="flex items-center space-x-2 mt-4">
                 <div className="flex items-center">
                   {[...Array(5)].map((_, i) => (
                     <svg
                       key={i}
-                      className={`w-5 h-5 ${
-                        i < Math.floor(product.rating)
+                      className={`w-5 h-5 ${i < Math.floor(product.rating)
                           ? 'text-yellow-400'
                           : 'text-gray-300 dark:text-gray-600'
-                      }`}
+                        }`}
                       fill="currentColor"
                       viewBox="0 0 20 20"
                     >
@@ -299,13 +297,12 @@ const ProductDetail = () => {
                     key={size.name}
                     onClick={() => setSelectedSize(size.name)}
                     disabled={size.stock === 0}
-                    className={`px-4 py-2 border rounded-lg font-medium transition-all duration-200 relative ${
-                      selectedSize === size.name
+                    className={`px-4 py-2 border rounded-lg font-medium transition-all duration-200 relative ${selectedSize === size.name
                         ? 'border-ink-600 bg-ink-600 text-white'
                         : size.stock === 0
-                        ? 'border-gray-300 text-gray-400 cursor-not-allowed'
-                        : 'border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:border-ink-600'
-                    }`}
+                          ? 'border-gray-300 text-gray-400 cursor-not-allowed'
+                          : 'border-gray-300 dark:border-gray-600 text-gray-700 dark:text-gray-300 hover:border-ink-600'
+                      }`}
                   >
                     {size.name}
                     {size.stock > 0 && (
@@ -329,13 +326,12 @@ const ProductDetail = () => {
                     key={color.name}
                     onClick={() => setSelectedColor(color.name)}
                     disabled={color.stock === 0}
-                    className={`w-10 h-10 rounded-full border-2 transition-all duration-200 flex items-center justify-center ${
-                      selectedColor === color.name
+                    className={`w-10 h-10 rounded-full border-2 transition-all duration-200 flex items-center justify-center ${selectedColor === color.name
                         ? 'border-ink-600 shadow-lg scale-110'
                         : color.stock === 0
-                        ? 'border-gray-300 opacity-50 cursor-not-allowed'
-                        : 'border-gray-300 hover:border-ink-600 hover:scale-105'
-                    }`}
+                          ? 'border-gray-300 opacity-50 cursor-not-allowed'
+                          : 'border-gray-300 hover:border-ink-600 hover:scale-105'
+                      }`}
                     style={{ backgroundColor: color.hex }}
                     title={color.name}
                   >
@@ -427,9 +423,8 @@ const ProductDetail = () => {
                           {[...Array(5)].map((_, i) => (
                             <svg
                               key={i}
-                              className={`w-4 h-4 ${
-                                i < review.rating ? 'text-yellow-400' : 'text-gray-300 dark:text-gray-600'
-                              }`}
+                              className={`w-4 h-4 ${i < review.rating ? 'text-yellow-400' : 'text-gray-300 dark:text-gray-600'
+                                }`}
                               fill="currentColor"
                               viewBox="0 0 20 20"
                             >

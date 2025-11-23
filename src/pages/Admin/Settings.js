@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useAuth } from '../../context/AuthContext';
 
 const Settings = () => {
-  const { user } = useAuth();
+  const { } = useAuth(); // Keep useAuth for future use
   const [activeTab, setActiveTab] = useState('general');
   const [loading, setLoading] = useState(false);
   const [settings, setSettings] = useState({
@@ -462,11 +462,10 @@ const Settings = () => {
                 <button
                   key={tab.id}
                   onClick={() => setActiveTab(tab.id)}
-                  className={`w-full flex items-center space-x-3 px-4 py-3 rounded-lg text-left transition-colors duration-200 ${
-                    activeTab === tab.id
+                  className={`w-full flex items-center space-x-3 px-4 py-3 rounded-lg text-left transition-colors duration-200 ${activeTab === tab.id
                       ? 'bg-ink-50 dark:bg-ink-900/20 text-ink-600 dark:text-ink-400'
                       : 'text-gray-600 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700'
-                  }`}
+                    }`}
                 >
                   <span className="text-lg">{tab.icon}</span>
                   <span className="font-medium">{tab.name}</span>
