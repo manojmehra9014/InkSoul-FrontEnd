@@ -2,7 +2,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { gsap } from 'gsap';
 import { useCart } from '../context/CartContext';
-import { useAuth } from '../context/AuthContext';
 import LoadingSpinner from '../components/UI/LoadingSpinner';
 
 const ProductDetail = () => {
