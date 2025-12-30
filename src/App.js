@@ -29,6 +29,7 @@ import About from './pages/About';
 import Contact from './pages/Contact';
 import Wishlist from './pages/Wishlist';
 import FAQ from './pages/FAQ';
+import Health from './pages/Health';
 
 // Context
 import { AuthProvider } from './context/AuthContext';
@@ -48,7 +49,7 @@ function App() {
   useEffect(() => {
     // Initialize GSAP animations
     gsap.set("body", { opacity: 0 });
-    
+
     // Simulate loading time
     const timer = setTimeout(() => {
       setLoading(false);
@@ -81,6 +82,8 @@ function App() {
                   <Route path="/contact" element={<Contact />} />
                   <Route path="/faq" element={<FAQ />} />
                   <Route path="/wishlist" element={<Wishlist />} />
+                  <Route path="/health" element={<Health />} />
+                  <Route path="/api/health" element={<Health />} />
 
                   {/* Auth Routes */}
                   <Route path="/login" element={<Login />} />
@@ -101,7 +104,7 @@ function App() {
                       <Dashboard />
                     </ProtectedRoute>
                   } />
-                  
+
                   {/* Admin Routes */}
                   <Route path="/admin/*" element={
                     <AdminRoute>
@@ -111,7 +114,7 @@ function App() {
                 </Routes>
               </main>
               <Footer />
-              
+
               {/* Cart Sidebar */}
               <CartSidebar />
             </div>
